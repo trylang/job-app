@@ -6,13 +6,10 @@ You can find the most recent version of this guide [here](https://github.com/fac
 ## Table of Contents
 
 - es5只有全局作用域以及函数作用域，ES6有了块级作用域。
-- [Sending Feedback](#sending-feedback)
-- [Folder Structure](#folder-structure)
-- [Available Scripts](#available-scripts)
-  - [npm start](#npm-start)
-  - [npm test](#npm-test)
-  - [npm run build](#npm-run-build)
-  - [npm run eject](#npm-run-eject)
+- express的简单用法。
+- 插件nodemon，可以时刻监听路由和响应内容变化，不用总重启。npm install -g nodemon;
+- 安装mongoose，方便操作MongoDB。 npm install mongoose --save;
+- 安装antd-mobile组件。 npm install antd-mobile --save;
 - [Supported Language Features and Polyfills](#supported-language-features-and-polyfills)
 - [Syntax Highlighting in the Editor](#syntax-highlighting-in-the-editor)
 - [Displaying Lint Output in the Editor](#displaying-lint-output-in-the-editor)
