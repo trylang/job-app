@@ -1,27 +1,27 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createStore } from 'redux';
-
-
+import { connect, Provider } from 'react-redux';
 import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 
-import { showGuns, addGun, removeGun } from './index.redux';
+import { store, mapStateToProps, mapDispatchToProps } from './index.redux';
 
-let store = createStore(showGuns);
+// @connect(
+//     state => ({number: state}),
+//     {addGun, removeGun, addGunAsync}
+// );
 
-// 打印初始值
-console.log(store.getState());
+const ShowGuns = connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(App);
 
-let unsubscribe = store.subscribe( () => {
-    console.log(store.getState());
-})
+ReactDOM.render(
+    <Provider store={store}>
+        <ShowGuns/>
+    </Provider>,
+    document.getElementById('root')
+)
 
-store.dispatch(addGun(1));
-store.dispatch(removeGun(2));
-
-unsubscribe();
-
-ReactDOM.render(<App />, document.getElementById('root'));
 registerServiceWorker();
