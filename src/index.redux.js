@@ -1,14 +1,14 @@
 
-import { createStore, applyMiddleware, compose } from 'redux';
-import thunk from 'redux-thunk';
-// 如果想用redux-dev-tools时，同步可以，但是异步就需要使用compose了。
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-export const store = createStore(
-    showGuns,
-    composeEnhancers(
-        applyMiddleware(thunk)
-    )   
-);
+// import { createStore, applyMiddleware, compose } from 'redux';
+// import thunk from 'redux-thunk';
+// // 如果想用redux-dev-tools时，同步可以，但是异步就需要使用compose了。
+// const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+// export const store = createStore(
+//     showGuns,
+//     composeEnhancers(
+//         applyMiddleware(thunk)
+//     )   
+// );
 
 // action 类型
 export const ADD_GUN = 'add gun';
