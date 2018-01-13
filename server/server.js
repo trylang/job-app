@@ -8,16 +8,29 @@ db.once('open', function() {
   console.log('mongo connect success haha');
 });
 
+// 定义User表和属性
+var User = mongoose.model('User', mongoose.Schema({
+  user: String,
+  age: Number
+}));
 
 // 新建app
 const app = express();
 
 app.get('/', function(req, res){
+  var user = new User({
+    user: 'langlang',
+    age: 18
+  });
+  user.save();
   res.send('<h1>hello express</h1>');
 });
 
 app.get('/data', (req, res) => {
-  res.json({name:' haha', age: '18'});
+  User.findOne({age: 18}, function(err, user) {
+    if(err) return console.error(err);
+    res.json(user);
+  })
 })
 
 app.listen(9093, function() {

@@ -7,6 +7,10 @@ import { mapStateToProps, mapDispatchToProps } from './auth.redux';
 
 class Home extends React.Component {
 
+    componentDidMount() {
+        this.props.getUserData();
+    }
+
     render() {
         console.log(this.props);
         const { title, login } = this.props;
@@ -20,7 +24,6 @@ class Home extends React.Component {
         const falseLogin = (
             <div>
                 <h1>请重新登录</h1>
-
                 <button onClick={login}>登录按钮</button>
             </div>
         )
@@ -34,13 +37,17 @@ export const Login = connect(
 
 export class About extends React.Component {
 
+    // componentDidMount() {
+    //     this.props.getUserData();
+    // }
+
     render() {
         let isAuth = this.props.title.auth.isAuth;
         const login = <Redirect to="/login" />
         const detail = (
             <div>
                 <h1>About</h1>
-                <h2>{isAuth ? '登录成功' : '重新登录'}</h2>               
+                <h2>{isAuth ? `欢迎${this.props.title.auth.user}, 年龄为${this.props.title.auth.age}登录成功` : '重新登录'}</h2>               
                         <Link to="/topics"> 去主题页看看 </Link>                   
                 <button onClick={this.props.logout}>登出页面</button>
             </div>

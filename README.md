@@ -11,7 +11,7 @@ You can find the most recent version of this guide [here](https://github.com/fac
 - 安装mongoose，方便操作MongoDB。 npm install mongoose --save;
 - 安装antd-mobile组件。 npm install antd-mobile --save;
 - es7,装饰器的使用，react-redux中的connect方法。npm install babel-plugin-transform-decorators-legacy --save-dev
-- [Syntax Highlighting in the Editor](#syntax-highlighting-in-the-editor)
+- 简洁好用的发送请求库， npm install axios --save安装
 - [Displaying Lint Output in the Editor](#displaying-lint-output-in-the-editor)
 - [Debugging in the Editor](#debugging-in-the-editor)
 - [Formatting Code Automatically](#formatting-code-automatically)
