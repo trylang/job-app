@@ -9,12 +9,19 @@ const initState = {
 	type:''
 };
 
-//action
-
-
 //reducer
+const registerReducer = (state = initState, action) => {
+  switch (action.type) {
+    case REGISTER_SUCCESS:
+      return {...state, ...action}
+    case ERROR_MSG:
+      return {...state, msg: action.msg}
+    default: 
+      return state
+  }
+}
 
-// 注册方法
+// 注册方法, ation
 export const register = ({user, psd, repeatpsd, type}) => {
   if(!user || !psd) {
     return '请填写用户或者密码';
@@ -27,10 +34,10 @@ export const register = ({user, psd, repeatpsd, type}) => {
     axios.post('/register')
       .then((req, res) => {
         if(res.state === 200 && res.code === 0) {
-          dispatch(res.data);
+          dispatch({type: REGISTER_SUCCESS,msg: null, data:res.data});
         }
         else {
-          console.log(res);
+          dispatch({type: REGISTER_SUCCESS, msg: res.data.msg});
         }
       })  
   }
