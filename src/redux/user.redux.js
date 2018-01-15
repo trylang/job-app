@@ -10,24 +10,29 @@ const initState = {
 };
 
 //reducer
-const registerReducer = (state = initState, action) => {
+export const userReducer = (state = initState, action) => {
   switch (action.type) {
     case REGISTER_SUCCESS:
-      return {...state, ...action}
+      return {...state, isAuth: true, ...action}
     case ERROR_MSG:
-      return {...state, msg: action.msg}
+      return {...state, isAuth: false, msg: action.msg}
     default: 
       return state
   }
 }
 
+const errorMsg = (msg) => {
+  return {msg, type: ERROR_MSG};
+}
+
 // 注册方法, ation
-export const register = ({user, psd, repeatpsd, type}) => {
+export const registerAction = ({user, psd, repeatpsd, type}) => {
+  console.log({user, psd, repeatpsd, type})
   if(!user || !psd) {
-    return '请填写用户或者密码';
+    return errorMsg('请填写用户或者密码');
   }
   else if (psd !== repeatpsd) {
-    return '密码与确认密码不一致';
+    return errorMsg('密码与确认密码不一致');
   }
 
   return dispatch => {

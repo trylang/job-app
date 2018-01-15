@@ -1,10 +1,25 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { List, InputItem, Radio, Button, WingBlank, WhiteSpace } from 'antd-mobile';
 
+import { registerAction } from '../../redux/user.redux';
+
 import Logo from '../../component/logo/logo';
+// import { mapStateToProps, mapDispatchToProps } from '../../redux/user.redux';
+
+export function mapStateToProps(state) {
+  return { user: state };
+}
+
+export function mapDispatchToProps(dispatch) {
+  return {
+    registerAction
+  }
+}
+
 const RadioItem = Radio.RadioItem;
 
-class Register extends React.Component {
+class Register1 extends React.Component {
   
   constructor(props) {
     super(props);
@@ -24,7 +39,7 @@ class Register extends React.Component {
   }
 
   handleRegister = () => {
-    console.log(this.state);
+    registerAction(this.state);
   }
 
   render() {
@@ -57,5 +72,10 @@ class Register extends React.Component {
     )
   }
 }
+
+const Register = connect (
+  mapStateToProps,
+  mapDispatchToProps
+)(Register1);
 
 export default Register;
