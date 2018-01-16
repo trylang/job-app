@@ -11,8 +11,6 @@ const initState = {
 
 //reducer
 export const userReducer = (state = initState, action) => {
-  console.log(state);
-  console.log(action);
   switch (action.type) {
     case REGISTER_SUCCESS:
       return {...state, isAuth: true, ...action}
@@ -37,8 +35,9 @@ export const registerAction = ({user, pwd, repeatpwd, type}) => {
   }
 
   return dispatch => {
-    axios.post('/register')
+    axios.post('/user/register')
       .then((req, res) => {
+        console.log(req);
         if(res.state === 200 && res.code === 0) {
           dispatch({type: REGISTER_SUCCESS,msg: null, data:res.data});
         }

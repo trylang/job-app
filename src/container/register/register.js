@@ -5,6 +5,7 @@ import { List, InputItem, Radio, Button, WingBlank, WhiteSpace } from 'antd-mobi
 import { registerAction } from '../../redux/user.redux';
 
 import Logo from '../../component/logo/logo';
+import '../../index.css';
 // import { mapStateToProps, mapDispatchToProps } from '../../redux/user.redux';
 
 export function mapStateToProps(state) {
@@ -12,6 +13,7 @@ export function mapStateToProps(state) {
 }
 
 export function mapDispatchToProps(dispatch) {
+  // 这里需要传递表单里的参数，故意传参也成haha,是要注意，参数的写法，当然，最好写成...args
   return {
     registerAction : (haha)=> dispatch(registerAction(haha))
   }
@@ -52,6 +54,7 @@ class Register1 extends React.Component {
       <div>
         <Logo></Logo>
         <List>
+          {this.props.user.msg?<p className='error-msg'>{this.props.user.msg}</p>:null}
           <InputItem onChange={(value) => this.handleChange('user', value)}>用户：</InputItem>
           <WhiteSpace />
           <InputItem onChange={(value) => this.handleChange('pwd', value)}>新密码：</InputItem>
