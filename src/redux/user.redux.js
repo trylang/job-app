@@ -11,6 +11,8 @@ const initState = {
 
 //reducer
 export const userReducer = (state = initState, action) => {
+  console.log(state);
+  console.log(action);
   switch (action.type) {
     case REGISTER_SUCCESS:
       return {...state, isAuth: true, ...action}
@@ -26,12 +28,11 @@ const errorMsg = (msg) => {
 }
 
 // 注册方法, ation
-export const registerAction = ({user, psd, repeatpsd, type}) => {
-  console.log({user, psd, repeatpsd, type})
-  if(!user || !psd) {
+export const registerAction = ({user, pwd, repeatpwd, type}) => {
+  if(!user || !pwd) {
     return errorMsg('请填写用户或者密码');
   }
-  else if (psd !== repeatpsd) {
+  else if (pwd !== repeatpwd) {
     return errorMsg('密码与确认密码不一致');
   }
 

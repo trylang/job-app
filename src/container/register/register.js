@@ -8,12 +8,12 @@ import Logo from '../../component/logo/logo';
 // import { mapStateToProps, mapDispatchToProps } from '../../redux/user.redux';
 
 export function mapStateToProps(state) {
-  return { user: state };
+  return { user: state.userReducer };
 }
 
 export function mapDispatchToProps(dispatch) {
   return {
-    registerAction
+    registerAction : (haha)=> dispatch(registerAction(haha))
   }
 }
 
@@ -39,7 +39,7 @@ class Register1 extends React.Component {
   }
 
   handleRegister = () => {
-    registerAction(this.state);
+    this.props.registerAction(this.state);
   }
 
   render() {
@@ -47,7 +47,7 @@ class Register1 extends React.Component {
       { label: 'genius' },
       { label: 'boss' }
     ];
-   
+
     return (
       <div>
         <Logo></Logo>
