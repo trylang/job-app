@@ -13,6 +13,7 @@ export function mapStateToProps(state) {
 }
 
 export function mapDispatchToProps(dispatch) {
+  console.log('dedede');
   // 这里需要传递表单里的参数，故意传参也成haha,是要注意，参数的写法，当然，最好写成...args
   return {
     registerAction : (haha)=> dispatch(registerAction(haha))

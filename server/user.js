@@ -5,11 +5,22 @@ var model = require('./model');
 var User = model.getModel('user');
 
 router.post('/register', function(req, res) {
-  console.log(req);
-  // User.create(req.body, function(err, res) {
-  //   console.log(res);
-  //   return res.data;
-  // })
+  const { user, pwd, type } = req.body;
+  User.findOne({user}, function(err, cb) {
+    if(cb) {
+      return res.json({code: 1, msg: '用户名重复'});
+    }
+    User.create({user, pwd, type}, function(err, doc) {
+      if(doc) {
+        return res.json({code: 0});
+      }
+      else {
+        return res.json({code: 1, msg: '后端出问题了'});
+      }
+      
+    })
+  })
+  
 })
 
 router.get('/list', function(req, res) {

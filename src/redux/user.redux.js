@@ -27,6 +27,7 @@ const errorMsg = (msg) => {
 
 // 注册方法, ation
 export const registerAction = ({user, pwd, repeatpwd, type}) => {
+  console.log('frfrfr');
   if(!user || !pwd) {
     return errorMsg('请填写用户或者密码');
   }
@@ -35,10 +36,12 @@ export const registerAction = ({user, pwd, repeatpwd, type}) => {
   }
 
   return dispatch => {
-    axios.post('/user/register')
-      .then((req, res) => {
-        console.log(req);
-        if(res.state === 200 && res.code === 0) {
+    axios.post('/user/register', {
+      user, pwd, repeatpwd, type
+    })
+    .then((res) => {
+        console.log(res);
+        if(res.state === 200 && res.data.code === 0) {
           dispatch({type: REGISTER_SUCCESS,msg: null, data:res.data});
         }
         else {
