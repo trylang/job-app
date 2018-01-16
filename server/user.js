@@ -6,5 +6,4 @@ router.get('/info', function(req, res) {
   return res.json({code: 2});
 });
 
-
 module.exports = router;
