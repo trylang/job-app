@@ -14,3 +14,6 @@ You can find the most recent version of this guide [here](https://github.com/fac
 - 简洁好用的发送请求库， npm install axios --save安装
 
 - 用户验证用cookie，和express搭配使用的插件是cookie-parser --save.
+- 好用的加密库插件。npm install utility --save.
+
+- 如果想要在jsx里运行js代码，需要使用{} 而不是();

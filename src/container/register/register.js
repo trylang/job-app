@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import { List, InputItem, Radio, Button, WingBlank, WhiteSpace } from 'antd-mobile';
 
 import { registerAction } from '../../redux/user.redux';
@@ -53,6 +54,7 @@ class Register1 extends React.Component {
 
     return (
       <div>
+        {this.props.user.redirectTo ? <Redirect to={this.props.user.redirectTo} /> : null}
         <Logo></Logo>
         <List>
           {this.props.user.msg?<p className='error-msg'>{this.props.user.msg}</p>:null}

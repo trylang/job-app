@@ -1,7 +1,8 @@
 var express = require('express');
 var router = express.Router();
-var model = require('./model');
+var utility = require('utility');
 
+var model = require('./model');
 var User = model.getModel('user');
 
 router.post('/register', function(req, res) {
@@ -10,7 +11,7 @@ router.post('/register', function(req, res) {
     if(cb) {
       return res.json({code: 1, msg: '用户名重复'});
     }
-    User.create({user, pwd, type}, function(err, doc) {
+    User.create({user, type, pwd: md5Pwd(pwd)}, function(err, doc) {
       if(doc) {
         return res.json({code: 0});
       }
@@ -34,5 +35,10 @@ router.get('/list', function(req, res) {
 router.get('/info', function(req, res) {
   return res.json({code: 2});
 });
+
+function md5Pwd(pwd) {
+  var salt = 'dede';
+  return utility.md5(utility.md5(pwd + salt));
+}
 
 module.exports = router;

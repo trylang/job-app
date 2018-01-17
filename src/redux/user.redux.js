@@ -1,9 +1,12 @@
 import axios from 'axios';
 
+import { getRedirectPath } from '../util';
+
 const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
 const ERROR_MSG = 'ERROR_MSG';
 const initState = {
   isAuth: false,
+  redirectTo: '',
   msg:'',
 	user:'',
 	type:''
@@ -13,7 +16,7 @@ const initState = {
 export const userReducer = (state = initState, action) => {
   switch (action.type) {
     case REGISTER_SUCCESS:
-      return {...state, isAuth: true, ...action}
+      return {...state, isAuth: true, redirectTo: getRedirectPath(action.payload) , ...action}
     case ERROR_MSG:
       return {...state, isAuth: false, msg: action.msg}
     default: 
@@ -27,7 +30,6 @@ const errorMsg = (msg) => {
 
 // 注册方法, ation
 export const registerAction = ({user, pwd, repeatpwd, type}) => {
-  console.log('frfrfr');
   if(!user || !pwd) {
     return errorMsg('请填写用户或者密码');
   }
@@ -40,12 +42,11 @@ export const registerAction = ({user, pwd, repeatpwd, type}) => {
       user, pwd, repeatpwd, type
     })
     .then((res) => {
-        console.log(res);
-        if(res.state === 200 && res.data.code === 0) {
-          dispatch({type: REGISTER_SUCCESS,msg: null, data:res.data});
+        if(res.status === 200 && res.data.code === 0) {
+          dispatch({type: REGISTER_SUCCESS, payload: {user, pwd, type}});
         }
         else {
-          dispatch({type: REGISTER_SUCCESS, msg: res.data.msg});
+          dispatch({type: ERROR_MSG, msg: res.data.msg});
         }
       })  
   }
