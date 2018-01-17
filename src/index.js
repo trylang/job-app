@@ -9,9 +9,10 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import reducers from './reducer';
 import './config';
 
+import AuthRoute from './component/authroute/authroute';
 import Login from './container/login/login';
 import Register from './container/register/register';
-import AuthRoute from './component/authroute/authroute';
+import BossInfo from './container/bossinfo/bossinfo';
 
 // 如果想用redux-dev-tools时，同步可以，但是异步就需要使用compose了。
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -26,6 +27,7 @@ ReactDom.render(
         <Router>
             <div>
                 <AuthRoute></AuthRoute>
+                <Route path='/bossinfo' component={BossInfo}/>
                 <Route path='/login' component={Login} />
                 <Route path='/register' component={Register}/>
             </div>
