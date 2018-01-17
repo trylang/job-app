@@ -4,6 +4,7 @@ import { getRedirectPath } from '../util';
 
 const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
 const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
+const LOAD_DATA = 'LOAD_DATA';
 const ERROR_MSG = 'ERROR_MSG';
 const initState = {
   isAuth: false,
@@ -20,6 +21,8 @@ export const userReducer = (state = initState, action) => {
       return {...state, isAuth: true, redirectTo: getRedirectPath(action.payload) , ...action}
     case LOGIN_SUCCESS:
       return {...state, isAuth: true, redirectTo: getRedirectPath(action.payload) , ...action}
+    case LOAD_DATA:
+      return {...state, ...action.payload}
     case ERROR_MSG:
       return {...state, isAuth: false, msg: action.msg}
     default: 
@@ -37,6 +40,11 @@ const registerDispatch = (data) => {
 
 const errorMsg = (msg) => {
   return {msg, type: ERROR_MSG};
+}
+
+// 存储信息， action
+export const loadData = (data) => {
+  return {type: LOAD_DATA, payload: data}
 }
 
 // 登录方法，action
