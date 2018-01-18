@@ -1,7 +1,14 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { NavBar, List, InputItem, WingBlank, TextareaItem, Button } from 'antd-mobile';
 
 import AvatarSelect from '../../component/avatar-select/avatar-select';
+import { update } from '../../redux/user.redux'; 
+
+@connect (
+  state => state.userReducer,
+  {update}
+)
 
 class BossInfo extends React.Component {
   constructor(props) {
@@ -12,6 +19,7 @@ class BossInfo extends React.Component {
       money: '',
       desc: ''
     };
+    this.updateUser = this.updateUser.bind(this);
   }
 
   handleChange = (key, value) => {
@@ -20,12 +28,18 @@ class BossInfo extends React.Component {
     });
   }
 
+  updateUser = () => {
+    console.log(this.state);
+    this.props.update(this.state);
+  }
+
   render() {
+    console.log(this.props);
     return (
       <div>
         <NavBar mode="dark">boss信息完善页面</NavBar>
-        <AvatarSelect></AvatarSelect>
-        <List renderHeader={() => 'Customize to focus'}>
+        <AvatarSelect selectAvatar={(v)=>this.handleChange('avatar',v)}></AvatarSelect>
+        <List>
         <InputItem onChange={(v)=>this.handleChange('title',v)}>
 					招聘职位
 				</InputItem>
@@ -43,7 +57,7 @@ class BossInfo extends React.Component {
 				>
         </TextareaItem>
         <WingBlank size="md">
-          <Button  type='primary'>保存</Button>
+          <Button  type='primary' onClick={this.updateUser}>保存</Button>
         </WingBlank>
 				
         </List>

@@ -1,27 +1,51 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Grid, List} from 'antd-mobile';
+
 import { getImgsPath } from '../../redux/static.redux';
 
 export function mapStateToProps(state) {
-  return { imgsPath: state.staticReducer };
+  return { imgsPath: state.staticReducer.data };
 }
 
 export function mapDispatchToProps(dispatch) {
-  // 这里需要传递表单里的参数，故意传参也成haha,是要注意，参数的写法，当然，最好写成...args
   return {
     getImgsPath : (...args)=> dispatch(getImgsPath(...args))
   }
 }
 
 class AvatarSelect extends React.Component {
-  
-  componentDidMount() {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+  componentWillMount() {
     this.props.getImgsPath();
   }
+
   render() {
-    console.log(this.props.imgsPath);
+    let data = [];
+    if(this.props.imgsPath && this.props.imgsPath.length > 0) {
+      data = this.props.imgsPath.map((_val, i) => ({
+        icon: require(`../../images/avatars/${_val}.png`),
+        text: _val
+      }));
+    }
+    const gridHeader = this.state.icon ? ((<div>
+      <span>已选择头像</span>
+      <img style={{width:20}} src={this.state.icon} alt=""/>
+    </div>)) : '请选择头像';
+
     return (
-      <h1>头像选择</h1>
+      <div>
+        <List renderHeader={()=>gridHeader}>
+        {data.length > 0 ? <Grid data={data} columnNum={5}
+         onClick={(v) => {
+           this.setState(v)
+           this.props.selectAvatar(v.text)}}/> : null}
+        </List>
+      </div>
+     
     )
   }
 }

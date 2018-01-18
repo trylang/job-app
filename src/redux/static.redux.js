@@ -7,7 +7,7 @@ const ERROR_MSG = 'ERROR_MSG';
 export const staticReducer = (state = {}, action) => {
   switch (action.type) {
     case IMAGESPATH: {
-      return {...state, ...action.payload};
+      return {...state, data: action.payload};
     }
     case ERROR_MSG: {
       return {...state, msg: action.msg}
@@ -27,7 +27,7 @@ export const getImgsPath = () => {
     axios.get('/static/imgsPath')
       .then(res => {
         if(res.status === 200) {
-          dispatch({type: IMAGESPATH, payload: res.data})
+          dispatch({type: IMAGESPATH, payload: fomatImgsPath(res.data)})
         }        
       })
       .catch(err => {
@@ -37,5 +37,17 @@ export const getImgsPath = () => {
 
   }
   
+}
+
+const fomatImgsPath = (imgsPath) => {
+  let paths = Object.keys(imgsPath);
+  let pathAry = [];
+  if(paths.length > 0) {
+    let reg = /[^.jpg|png]+/g;
+    pathAry = paths.map((item) => {
+      return item.match(reg)[0];
+    });
+    return pathAry;
+  }
 }
 
