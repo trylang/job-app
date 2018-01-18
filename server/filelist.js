@@ -69,4 +69,4 @@ json[item.name] = {
 // str+=desc +"\n"
 }
 
-writeFile("src/test.json",JSON.stringify(json));
+writeFile("static/test.json",JSON.stringify(json));
