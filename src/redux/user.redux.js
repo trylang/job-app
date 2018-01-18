@@ -85,10 +85,9 @@ export const registerAction = ({user, pwd, repeatpwd, type}) => {
 // 更新方法， action
 export const update = (data) => {
   return dispatch => {
-    axios.post('/update', data)
+    axios.post('/user/update', data)
       .then(res => {
-        console.log(res);
-        dispatch(authDispatch(data));
+        dispatch(authDispatch(res.data.data));
       })
   }
 }

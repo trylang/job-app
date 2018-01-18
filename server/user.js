@@ -38,6 +38,20 @@ router.post('/register', function(req, res) {
   })  
 });
 
+router.post('/update', function(req, res) {
+  const userid = req.cookies.userid;
+  if(!userid) {
+    return res.json({code: 1});
+  }
+  User.findByIdAndUpdate(userid, req.body, function(err, doc) {
+    const data = Object.assign({}, {
+      user: doc.user,
+      type: doc.type
+    }, req.body);
+    return res.json({code: 0, data});
+  })
+});
+
 router.get('/list', function(req, res) {
   User.find({}, _filter, function(err, doc) {
     return res.json(doc);

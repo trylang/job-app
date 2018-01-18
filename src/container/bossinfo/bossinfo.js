@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import { NavBar, List, InputItem, WingBlank, TextareaItem, Button } from 'antd-mobile';
 
 import AvatarSelect from '../../component/avatar-select/avatar-select';
@@ -29,14 +30,13 @@ class BossInfo extends React.Component {
   }
 
   updateUser = () => {
-    console.log(this.state);
     this.props.update(this.state);
   }
 
   render() {
-    console.log(this.props);
     return (
       <div>
+        {this.props.redirectTo ? (<Redirect to={this.props.redirectTo}></Redirect>) : null}
         <NavBar mode="dark">boss信息完善页面</NavBar>
         <AvatarSelect selectAvatar={(v)=>this.handleChange('avatar',v)}></AvatarSelect>
         <List>
