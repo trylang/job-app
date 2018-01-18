@@ -1,12 +1,17 @@
 import React from 'react';
+import { NavBar, Icon } from 'antd-mobile';
 
 class Dashbord extends React.Component {
-  
+
   render() {
     return (
-      <h1>Dashbord</h1>
+      <div>
+        <NavBar
+          mode="dark"
+        >NavBar</NavBar>
+      </div>
     )
   }
-} 
+}
 
 export default Dashbord;
