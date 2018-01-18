@@ -1,7 +1,8 @@
 import React from 'react';
 import { NavBar, Icon } from 'antd-mobile';
+import { } from 'react-router-dom';
 
-class Dashbord extends React.Component {
+class Dashboard extends React.Component {
 
   render() {
     return (
@@ -14,4 +15,4 @@ class Dashbord extends React.Component {
   }
 }
 
-export default Dashbord;
+export default Dashboard;
