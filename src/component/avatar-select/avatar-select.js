@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { Grid, List} from 'antd-mobile';
 
 import { getImgsPath } from '../../redux/static.redux';
@@ -45,9 +46,12 @@ class AvatarSelect extends React.Component {
            this.props.selectAvatar(v.text)}}/> : null}
         </List>
       </div>
-     
     )
   }
+}
+
+AvatarSelect.PropTypes = {
+  selectAvatar: PropTypes.func.isRequired
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(AvatarSelect);
