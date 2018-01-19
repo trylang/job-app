@@ -1,6 +1,6 @@
 import React from "react";
-import { NavBar, Icon, TabBar } from "antd-mobile";
-import { withRouter, Route } from "react-router-dom";
+import { NavBar, TabBar } from "antd-mobile";
+import { withRouter, Route, Switch } from "react-router-dom";
 import { connect } from "react-redux";
 require(`../../images/icons/boss.svg`)
 // require(`../../images/avatars/${_val}.png`)
@@ -76,7 +76,12 @@ class Dashboard extends React.Component {
     return (
       <div>
         <NavBar mode="dark">{selectNav.title}</NavBar>
-        <Route path={selectNav.path} component={selectNav.component} />
+        <div style={{marginTop:45}}>
+          <Switch>
+            <Route path={selectNav.path} component={selectNav.component} />
+          </Switch>
+        </div>
+        
         <TabBar
           unselectedTintColor="#949494"
           tintColor="#33A3F4"
@@ -100,7 +105,6 @@ class Dashboard extends React.Component {
               }}
               data-seed="logId"
             >
-              {/* {item.component} */}
             </TabBar.Item>
           })}
         </TabBar>
