@@ -53,8 +53,9 @@ router.post('/update', function(req, res) {
 });
 
 router.get('/list', function(req, res) {
-  User.find({}, _filter, function(err, doc) {
-    return res.json(doc);
+  const type = req.body;
+  User.find(type, _filter, function(err, doc) {
+    return res.json({code: 0, data: doc});
   })
   
 });

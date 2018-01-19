@@ -2,8 +2,9 @@ import React from "react";
 import { NavBar, TabBar } from "antd-mobile";
 import { withRouter, Route, Switch } from "react-router-dom";
 import { connect } from "react-redux";
-require(`../../images/icons/boss.svg`)
-// require(`../../images/avatars/${_val}.png`)
+
+import BossList  from '../../container/boss/boss';
+import GeniusList  from '../../container/genius/genius';
 
 @withRouter
 @connect(state => state.userReducer)
@@ -41,7 +42,7 @@ class Dashboard extends React.Component {
         text: "牛人",
         icon: "boss",
         title: "牛人列表",
-        component: Boss,
+        component: BossList,
         hide: user.type === "genius"
       },
       {
@@ -49,7 +50,7 @@ class Dashboard extends React.Component {
         text: "boss",
         icon: "job",
         title: "BOSS列表",
-        component: Genius,
+        component: GeniusList,
         hide: user.type === "boss"
       },
       {
@@ -76,7 +77,7 @@ class Dashboard extends React.Component {
     return (
       <div>
         <NavBar mode="dark">{selectNav.title}</NavBar>
-        <div style={{marginTop:45}}>
+        <div style={{marginBottom:45}}>
           <Switch>
             <Route path={selectNav.path} component={selectNav.component} />
           </Switch>
