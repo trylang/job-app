@@ -17,3 +17,5 @@ You can find the most recent version of this guide [here](https://github.com/fac
 - 好用的加密库插件。npm install utility --save.
 
 - 如果想要在jsx里运行js代码，需要使用{} 而不是();
+
+ - 关于cookie操作，使用插件browser-cookies
