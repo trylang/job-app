@@ -5,6 +5,8 @@ import { connect } from "react-redux";
 
 import BossList  from '../../container/boss/boss';
 import GeniusList  from '../../container/genius/genius';
+import Me from '../../container/me/me';
+import MessageList from '../../container/message/message';
 
 @withRouter
 @connect(state => state.userReducer)
@@ -12,29 +14,6 @@ class Dashboard extends React.Component {
 
   render() {
     const { location, match, history, ...user } = this.props;
-    const Boss = () => (
-      <div>
-        <h1>Boss</h1>
-      </div>
-    );
-
-    const Genius = () => (
-      <div>
-        <h1>Genius</h1>
-      </div>
-    );
-
-    const Msg = () => (
-      <div>
-        <h1>Msg</h1>
-      </div>
-    );
-
-    const User = () => (
-      <div>
-        <h1>User</h1>
-      </div>
-    );
 
     const navBarList = [
       {
@@ -58,14 +37,14 @@ class Dashboard extends React.Component {
         text: "消息",
         icon: "msg",
         title: "消息列表",
-        component: Msg
+        component: MessageList
       },
       {
         path: "/me",
         text: "我",
         icon: "user",
         title: "个人中心",
-        component: User
+        component: Me
       }
     ];
     let selectNav = navBarList.find(item => {
