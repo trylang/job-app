@@ -53,7 +53,8 @@ class Dashboard extends React.Component {
     if (!selectNav) {
       return null;
     }
-    return (
+    
+    return user.type ? (
       <div>
         <NavBar mode="dark">{selectNav.title}</NavBar>
         <div style={{marginBottom:45}}>
@@ -89,7 +90,7 @@ class Dashboard extends React.Component {
           })}
         </TabBar>
       </div>
-    );
+    ): null;
   }
 }
 

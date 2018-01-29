@@ -4,6 +4,7 @@ import { getRedirectPath } from '../util';
 
 const AUTH_SUCCESS = 'AUTH_SUCCESS';
 const LOAD_DATA = 'LOAD_DATA';
+const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
 const ERROR_MSG = 'ERROR_MSG';
 const initState = {
   // isAuth: false,
@@ -17,9 +18,11 @@ const initState = {
 export const userReducer = (state = initState, action) => {
   switch (action.type) {
     case AUTH_SUCCESS:
-      return {...state, redirectTo: getRedirectPath(action.payload) , ...action}
+      return {...state, redirectTo: getRedirectPath(action.payload) , ...action.payload}
     case LOAD_DATA:
       return {...state, ...action.payload}
+    case LOGOUT_SUCCESS:
+      return {...initState, redirectTo: '/login'}
     case ERROR_MSG:
       return {...state, msg: action.msg}
     default: 
@@ -90,5 +93,10 @@ export const update = (data) => {
         dispatch(authDispatch(res.data.data));
       })
   }
+}
+
+// 退出方法， action
+export const logoutSubmit = () => {
+  return {type: LOGOUT_SUCCESS};
 }
 

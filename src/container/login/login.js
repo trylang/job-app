@@ -30,7 +30,6 @@ class Login extends React.Component {
     this.register = this.register.bind(this);
   }
   login = () => {
-    alert("44444")
     this.props.login(this.state);
   }
   register = () => {
